@@ -12,6 +12,7 @@ _deps
 __pycache__
 *.pyc
 .idea/
+.cache/
 cmake-build-debug/
 .DS_Store
 labs/misc/io_opt1/DataPaths.h
@@ -23,3 +24,4 @@ build_baseline
 build
 results.json
 /tools/benchmark/
+perf.data*
