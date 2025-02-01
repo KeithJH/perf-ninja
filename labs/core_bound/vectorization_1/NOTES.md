@@ -145,14 +145,14 @@ Further, as expected, much of the hotpath now uses vectorized code:
 ```
 $ perf record ./build/lab --benchmark_filter=solution
 $ perf annotate -Mintel
-  3.58 │        vpmaxsw      xmm5,xmm5,xmm0                                                                                                                                                                   ▒
-  4.05 │        vpmaxsw      xmm2,xmm2,xmm0                                                                                                                                                                   ▒
-  7.87 │        vpmaxsw      xmm4,xmm4,xmm1                                                                                                                                                                   ▒
-  7.55 │        vpmaxsw      xmm3,xmm3,xmm1                                                                                                                                                                   ▒
-  8.15 │        vmovdqa      XMMWORD PTR [rdx-0x10],xmm2                                                                                                                                                      ▒
-  7.84 │        vmovdqa      XMMWORD PTR [rdx-0x20],xmm3                                                                                                                                                      ▒
-  4.39 │        vmovdqa      XMMWORD PTR [rsp+0x80],xmm4                                                                                                                                                      ▒
-  4.59 │        vmovdqa      XMMWORD PTR [rsp+0x90],xmm5                                                                                                                                                      ▒
-  1.44 │        cmp          rcx,rsi                                                                                                                                                                          ▒
-       │      ↑ jne          15f0                                                                                                                                                                             ▒
+  3.58 │        vpmaxsw      xmm5,xmm5,xmm0
+  4.05 │        vpmaxsw      xmm2,xmm2,xmm0
+  7.87 │        vpmaxsw      xmm4,xmm4,xmm1
+  7.55 │        vpmaxsw      xmm3,xmm3,xmm1
+  8.15 │        vmovdqa      XMMWORD PTR [rdx-0x10],xmm2
+  7.84 │        vmovdqa      XMMWORD PTR [rdx-0x20],xmm3
+  4.39 │        vmovdqa      XMMWORD PTR [rsp+0x80],xmm4
+  4.59 │        vmovdqa      XMMWORD PTR [rsp+0x90],xmm
+  1.44 │        cmp          rcx,rsi
+       │      ↑ jne          15f0
 ```
