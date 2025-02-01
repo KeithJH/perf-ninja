@@ -10,5 +10,28 @@ inline constexpr size_t sequence_count_v = 16; // The number of sequences to gen
 using sequence_t = std::array<uint8_t, sequence_size_v>;
 using result_t = std::array<int16_t, sequence_count_v>;
 
-result_t compute_alignment(std::vector<sequence_t> const &, std::vector<sequence_t> const &);
+struct Baseline {
+  static result_t compute_alignment(std::vector<sequence_t> const &, std::vector<sequence_t> const &);
+};
+
+struct Solution {
+  using sequence_col_t = std::array<uint8_t, sequence_count_v>;
+  using simd_sequence_t = std::array<sequence_col_t, sequence_size_v>;
+
+  static result_t compute_alignment(std::vector<sequence_t> const &, std::vector<sequence_t> const &);
+
+private:
+  static simd_sequence_t transpose(const std::vector<sequence_t> &sequences);
+};
+
+struct VideoSolution {
+  using simd_score_t = std::array<int16_t, sequence_count_v>;
+  using simd_sequence_t = std::array<simd_score_t, sequence_size_v>;
+
+  static result_t compute_alignment(std::vector<sequence_t> const &, std::vector<sequence_t> const &);
+
+private:
+  static simd_sequence_t transpose(const std::vector<sequence_t> &sequences);
+};
+
 std::pair<std::vector<sequence_t>, std::vector<sequence_t>> init();
